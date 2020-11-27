@@ -1,6 +1,8 @@
 class Submission < ApplicationRecord
   acts_as_taggable # Alias for acts_as_taggable_on :tags
-  belongs_to :site
+  has_many :site_records
+  has_many :sites, through: :site_records
+  
   has_one :type,  :dependent => :destroy
   accepts_nested_attributes_for :type
   belongs_to :participant

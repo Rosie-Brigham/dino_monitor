@@ -2,8 +2,13 @@
 <%= form_for :myDropzoneForm, html: {id: "dropzone-form-id"} do |f| %>
   <div id="tpl">
     <p>
-      <%= f.label :site_id %><br>
-      <%= f.select :site_id, options_for_select(Site.all.collect { | site | [site.name, site.id] }) %>
+      <%= f.label :site %><br>
+      <% Site.all.each do |site| %>
+        <span><%= site.name %><%= f.check_box site.id %></span>
+      <% end %>
+      
+      <%= f.text_field :site_list, class: "tags" %>
+      
       <%= label_tag :reliable?, "Reliable / useful?" %>
       <%= check_box_tag :reliable %>
       <%= label_tag :record_taken, "date taken" %>
