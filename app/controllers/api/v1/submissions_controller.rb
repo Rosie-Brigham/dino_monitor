@@ -5,10 +5,9 @@ module Api
       def index
         submissions_scope ||= reliable? ? scope.reliable : scope
 
-        unsorted_sites.each do |id|
+        unsorted_sites.compact.each do |id|
           submissions_scope = submissions_scope.exclude_unsorted(id)
         end
-
         paginate json: submissions_scope.order(record_taken: :desc), per_page: page_size
       end
 
