@@ -4,7 +4,8 @@ $(document).on("ready page:load", function() {
   if ($('h3#bulk-upload').size() > 0) {
     core.BulkUpload.readyBulkUpload();
     core.BulkUpload.readyAutoParticipantFill()
-    core.BulkUpload.readyAutoDateFille()
+    core.BulkUpload.readyAutoDateFill()
+    core.BulkUpload.readyMultiSelect()
   } 
 });
 
@@ -33,22 +34,22 @@ core.BulkUpload.readyBulkUpload = function() {
       });
   
       myDropzone.on("sendingmultiple", function(file, xhr, formData) {
-        formData.append("site_id", $('#myDropzoneForm_site_id').val());
+        var site_ids = $('.ms-selected').map((_,el) => el.firstChild.getAttribute("value")).get()
+        var reliable = $('#tpl').find('#reliable').is(':checked')
+        var date = $('#tpl').find('#record_taken').val()
+        var submittedAt = $('#tpl').find('#submitted_at').val()
+        var typeName = $('#tpl').find('#type_name').val()
         
-          var reliable = $('#tpl').find('#reliable').is(':checked')
-          var date = $('#tpl').find('#record_taken').val()
-          var submittedAt = $('#tpl').find('#submitted_at').val()
-          var typeName = $('#tpl').find('#type_name').val()
-          
-          var participantId = $('#tpl').find('#participant_id').val()
-          var comment = $('#tpl').find('#comment').val()
-          
-          formData.append('reliable', reliable);
-          formData.append('record_taken', date);
-          formData.append('submitted_at', submittedAt);
-          formData.append('type_name', typeName);
-          formData.append('comment', comment);
-          formData.append('participant_id', participantId);
+        var participantId = $('#tpl').find('#participant_id').val()
+        var comment = $('#tpl').find('#comment').val()
+        
+        formData.append("site_ids", site_ids);
+        formData.append('reliable', reliable);
+        formData.append('record_taken', date);
+        formData.append('submitted_at', submittedAt);
+        formData.append('type_name', typeName);
+        formData.append('comment', comment);
+        formData.append('participant_id', participantId);
       });
     },
     successmultiple: function(data,response) {
@@ -74,8 +75,12 @@ core.BulkUpload.readyAutoParticipantFill = function() {
  });
 }
 
-core.BulkUpload.readyAutoDateFille = function() {
+core.BulkUpload.readyAutoDateFill = function() {
   $('input#record_taken').change(function(){
     $('input#submitted_at').val(this.value)
   })
+}
+
+core.BulkUpload.readyMultiSelect = function() {
+  $('#myDropzoneForm_site_ids').multiSelect({})
 }

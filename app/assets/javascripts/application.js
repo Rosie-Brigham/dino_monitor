@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require smart_listing
 //= require micromodal/dist/micromodal
+//= require multi_select
 //= require core
 //= require tags_input
 //= require bulk_upload

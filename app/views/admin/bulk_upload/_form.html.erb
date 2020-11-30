@@ -2,13 +2,10 @@
 <%= form_for :myDropzoneForm, html: {id: "dropzone-form-id"} do |f| %>
   <div id="tpl">
     <p>
-      <%= f.label :site %><br>
-      <% Site.all.each do |site| %>
-        <span><%= site.name %><%= f.check_box site.id %></span>
-      <% end %>
-      
-      <%= f.text_field :site_list, class: "tags" %>
-      
+      <%= f.label("Sites (select all that appear in image)") %><br>
+      <%= f.select :site_ids, options_for_select(Site.all.collect { | site | [site.name, site.id] }), id: "multi-select" %>
+
+            
       <%= label_tag :reliable?, "Reliable / useful?" %>
       <%= check_box_tag :reliable %>
       <%= label_tag :record_taken, "date taken" %>
