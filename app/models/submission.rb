@@ -58,7 +58,7 @@ class Submission < ApplicationRecord
   private
 
   def validate_site_id
-    errors.add(:site_id, "site id is invalid") unless Site.exists?(self.site_id)
+    errors.add(:site_ids, "site ids are missing or invalid invalid") unless self.site_ids.map { |id| Site.exists?(id)} && site_ids.present?
   end
 
   def validate_participant_id

@@ -22,7 +22,7 @@ class Admin::BulkUploadController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:site_id,
+    params.permit(:site_ids,
                   :reliable, 
                   :record_taken, 
                   :submitted_at,
@@ -35,8 +35,7 @@ class Admin::BulkUploadController < ApplicationController
   def bulk_upload_images
     submissions = []
     params[:file].each do |key, image|
-      registration_params = permitted_params.merge(image: image)
-      
+      registration_params = permitted_params.merge(site_ids: params[:site_ids]).merge(image: image)
       @registration = Registration.new(registration_params)
 
       if @registration.save

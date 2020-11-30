@@ -11,7 +11,7 @@ RSpec.describe Registration, type: :model do
   let(:params) do
     {
       reliable: true,
-      site_id: site.id,
+      site_ids: [site.id],
       record_taken: date,
       type_name: 'EMAIL',
       participant_id: email,
