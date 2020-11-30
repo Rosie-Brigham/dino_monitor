@@ -24,7 +24,7 @@ class TwitterJob
     image_url = media.media_url
 
     registration = Registration.new(reliable: false, 
-      site_id: site_id, 
+      site_ids: [site_id], 
       image_file: image_url, 
       comment: twitter_desc,
       record_taken: record_taken, 
