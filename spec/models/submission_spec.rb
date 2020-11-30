@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe Submission, type: :model do
   
   context 'associations' do
-    it { should belong_to(:site) }
+    it { should have_many(:sites) }
     it { should have_one(:type) }
   end 
   
@@ -10,10 +10,10 @@ RSpec.describe Submission, type: :model do
     subject { described_class.new(params) }
     let(:params) { { site_id: 123, record_taken: Date.today }}
     
-    context 'when site id invalid' do
+    context 'when site ids are invalid' do
       it 'throws error' do
         expect(subject.valid?).to be false
-        expect(subject.errors.messages[:site_id].to_sentence).to eq "site id is invalid"
+        expect(subject.errors.messages[:site_ids].to_sentence).to eq "site ids are missing or invalid"
       end
     end
     
@@ -30,7 +30,7 @@ RSpec.describe Submission, type: :model do
     context 'when site id and participant id valid' do
       let(:site)   { create(:site) }
       let(:participant) { create(:participant) }
-      let(:params) { { site_id: site.id, participant_id: participant.id, record_taken: Date.today }}
+      let(:params) { { site_ids: [site.id], participant_id: participant.id, record_taken: Date.today }}
 
       it 'creates submission' do
         expect(subject.valid?).to be true
@@ -77,7 +77,7 @@ RSpec.describe Submission, type: :model do
     subject { create(:submission) }
     describe "#site_name" do
       it "returns site name" do
-        expect(subject.site_name).to eq subject.site.name
+        expect(subject.site_names).to eq subject.sites.map(&:name)
       end 
     end
   end

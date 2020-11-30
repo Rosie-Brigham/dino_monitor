@@ -23,7 +23,7 @@ class Submission < ApplicationRecord
 
   scope :search_site, ->(site_id) {
     if site_id.present?
-      where(site_id: site_id)
+      where(site_id: sites.map(&:id))
     end
   }
 
@@ -41,8 +41,8 @@ class Submission < ApplicationRecord
     end
   }
   
-  def site_name
-    @site_name ||= site.name
+  def site_names
+    @site_name ||= sites.map(&:name)
   end
 
   def image_url
@@ -58,7 +58,7 @@ class Submission < ApplicationRecord
   private
 
   def validate_site_id
-    errors.add(:site_ids, "site ids are missing or invalid invalid") unless self.site_ids.map { |id| Site.exists?(id)} && site_ids.present?
+    errors.add(:site_ids, "site ids are missing or invalid") unless self.site_ids.map { |id| Site.exists?(id)} && site_ids.present?
   end
 
   def validate_participant_id

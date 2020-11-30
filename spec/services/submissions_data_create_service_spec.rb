@@ -44,8 +44,8 @@ RSpec.describe SubmissionsDataCreateService do
         totalParticipants: 2,
         aiTags: [],
         types: [{ x: 'Email', y: 2 }],
-        maxSubs: ['Some Stones', 'Some Stones'],
-        minSubs: ['Some Stones', 'Some Stones'] }
+        maxSubs: ['Some Stones'],
+        minSubs: ['Some Stones'] }
     end
 
 
