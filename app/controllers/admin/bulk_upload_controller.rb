@@ -35,9 +35,10 @@ class Admin::BulkUploadController < ApplicationController
   def bulk_upload_images
     submissions = []
     params[:file].each do |key, image|
-      registration_params = permitted_params.merge(site_ids: params[:site_ids]).merge(image: image)
+      site_params = params[:site_ids].split(',') if params[:site_ids].present?
+      registration_params = permitted_params.merge(site_ids: site_params).merge(image: image)
       @registration = Registration.new(registration_params)
-
+      # binding.pry
       if @registration.save
         submissions << "Image number #{key.to_i + 1}, upload sucessful"
       else

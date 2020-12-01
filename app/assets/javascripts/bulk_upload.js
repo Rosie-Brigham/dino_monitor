@@ -35,6 +35,8 @@ core.BulkUpload.readyBulkUpload = function() {
   
       myDropzone.on("sendingmultiple", function(file, xhr, formData) {
         var site_ids = $('.ms-selected').map((_,el) => el.firstChild.getAttribute("value")).get()
+        let uniqueIds = [...new Set(site_ids)]
+        debugger
         var reliable = $('#tpl').find('#reliable').is(':checked')
         var date = $('#tpl').find('#record_taken').val()
         var submittedAt = $('#tpl').find('#submitted_at').val()
@@ -43,7 +45,7 @@ core.BulkUpload.readyBulkUpload = function() {
         var participantId = $('#tpl').find('#participant_id').val()
         var comment = $('#tpl').find('#comment').val()
         
-        formData.append("site_ids", site_ids);
+        formData.append("site_ids", uniqueIds);
         formData.append('reliable', reliable);
         formData.append('record_taken', date);
         formData.append('submitted_at', submittedAt);

@@ -16,7 +16,7 @@ RSpec.describe Admin::BulkUploadController, type: :request do
     let(:headers)  { {"CONTENT_TYPE" => "application/json" }}
     let(:test_image_path) { 'spec/fixtures/assets/test-image.jpg' }
     let(:params) {{  
-                  "site_ids": [site.id],
+                  "site_ids": "#{site.id}",
                   "reliable": "false", 
                   "record_taken": "1111-11-11",
                   "type_name": "INSTAGRAM", 
@@ -35,7 +35,7 @@ RSpec.describe Admin::BulkUploadController, type: :request do
 
     context "with multiple sites" do
       let(:params) {{  
-        "site_ids": [site.id, second_site.id],
+        "site_ids": "#{site.id}, #{second_site.id}",
         "reliable": "false", 
         "record_taken": "1111-11-11",
         "type_name": "INSTAGRAM", 
