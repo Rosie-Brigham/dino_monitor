@@ -23,7 +23,7 @@ class Submission < ApplicationRecord
 
   scope :search_site, ->(site_id) {
     if site_id.present?
-      where(site_id: sites.map(&:id))
+      where(sites: site_id)
     end
   }
 
