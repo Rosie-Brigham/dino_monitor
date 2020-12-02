@@ -26,6 +26,7 @@ module Admin
     def edit; end
 
     def update
+      submission_params
       @submission.update_attributes(submission_params)
       respond_to do |format|
         format.js { render 'admin/submissions/update.js.erb' }
@@ -50,7 +51,7 @@ module Admin
 
     def p_params
       params.permit(:reliable,
-                    :site_id,
+                    :site_names,
                     :site_filter,
                     :type_filter,
                     :tag,
@@ -67,13 +68,19 @@ module Admin
     end
 
     def submission_params
-      params.require(:submission).permit(:reliable,
-                                         :site_id,
-                                         :type_id,
-                                         :image,
-                                         :record_taken,
-                                         :submitted_at,
-                                         :tag_list)
+      sp = params.require(:submission).permit(:reliable,
+                                              :type_id,
+                                              :image,
+                                              :record_taken,
+                                              :submitted_at,
+                                              :tag_list)
+                                                              
+      sp.merge(sites: collect_sites)
+    end
+
+    def collect_sites
+      site_names = params[:submission][:site_names].split(',')
+      site_names.map { |name| Site.find_by(name: name) } #TODO ADJUST FOR MORE SITES
     end
 
     def search_site(collection, name)

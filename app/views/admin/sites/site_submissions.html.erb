@@ -24,7 +24,10 @@
               <%= image_tag(url_for(submission.image.variant(resize:"200x200"))) %>
             </span>
           </td>
-          <td class="sites"><%= f.select :site_id, options_for_select(Site.all.map {|s| [s.name, s.id]}, [submission.site.name, submission.site.id] || "")%></td>
+
+          <td class="sites"><%= f.text_field :site_names, value: submission.site_names.join(', '), class: "site_names" %> </td>
+
+
           <td>Reliable? <%= f.check_box :reliable, checked: submission.reliable %></td>
           <td><%=f.text_field :record_taken, class: :datepicker, :value => submission.record_taken.strftime("%d/%m/%Y") %></td>
           <td><%= f.text_field :tag_list, value: submission.tag_list.to_s, class: "tags" %> </td>

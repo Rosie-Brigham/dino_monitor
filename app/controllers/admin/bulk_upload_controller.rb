@@ -38,7 +38,7 @@ class Admin::BulkUploadController < ApplicationController
       site_params = params[:site_ids].split(',') if params[:site_ids].present?
       registration_params = permitted_params.merge(site_ids: site_params).merge(image: image)
       @registration = Registration.new(registration_params)
-      # binding.pry
+
       if @registration.save
         submissions << "Image number #{key.to_i + 1}, upload sucessful"
       else
