@@ -73,14 +73,14 @@ class SubmissionsDataCreateService
   end
 
   def top_scores_object
-    scores.first(4).map(&:site).map(&:name)
+    scores.first(4).map(&:site_names).flatten.uniq
   end
-
+  
   def bottom_scores_object
-    scores.last(4).map(&:site).map(&:name)
+    scores.last(4).map(&:site_names).flatten.uniq
   end
 
   def scores
-    @scores ||= Submission.select(:site_id).group(:site_id).order('count(site_id) desc')
+    @scores ||= Submission.left_joins(:sites).group(:id).order('COUNT(sites.id) DESC')
   end
 end

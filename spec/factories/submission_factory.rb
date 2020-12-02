@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :submission do
-    site_id { create(:site).id}
+    site_ids { [create(:site).id] }
     participant_id { create(:participant).id }
     record_taken { Date.today }
     ai_tags  { {} }

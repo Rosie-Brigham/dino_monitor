@@ -1,5 +1,5 @@
 - cache object do
-  %td.table-text= object.site_name
+  %td.table-text= object.site_names.join(', ')
   %td.table-text.image
     -# TODO: refactor this with presenter
     = image_tag(url_for(object.image.variant(resize:"200x200")))

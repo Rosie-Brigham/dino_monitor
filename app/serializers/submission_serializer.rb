@@ -1,7 +1,7 @@
 class SubmissionSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   
-  attributes :id, :siteName, :siteId, :recordTaken, :ai_tags, :imageUrlSmall,  :imageUrl, :typeName, :comment, :tags
+  attributes :id, :siteNames, :siteIds, :recordTaken, :ai_tags, :imageUrlSmall,  :imageUrl, :typeName, :comment, :tags
 
   def imageUrlSmall
     variant = object.image.attachment.variant(resize: "300x300")
@@ -25,12 +25,12 @@ class SubmissionSerializer < ActiveModel::Serializer
     end
   end
 
-  def siteName
-    self.object.site.name
+  def siteNames
+    self.object.sites.map(&:name)
   end
 
-  def siteId
-    self.object.site_id
+  def siteIds
+    self.object.site_ids
   end
 
   def typeName

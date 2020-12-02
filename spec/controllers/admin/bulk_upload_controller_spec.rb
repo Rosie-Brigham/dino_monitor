@@ -11,10 +11,12 @@ RSpec.describe Admin::BulkUploadController, type: :request do
     end
     
     let(:site) { create(:site) }
+    let(:second_site) { create(:site, name: 'More Stones') }
+
     let(:headers)  { {"CONTENT_TYPE" => "application/json" }}
     let(:test_image_path) { 'spec/fixtures/assets/test-image.jpg' }
     let(:params) {{  
-                  "site_id": site.id,
+                  "site_ids": "#{site.id}",
                   "reliable": "false", 
                   "record_taken": "1111-11-11",
                   "type_name": "INSTAGRAM", 
@@ -28,6 +30,24 @@ RSpec.describe Admin::BulkUploadController, type: :request do
           post "/admin/bulk_upload", params, headers: headers
         }.to change(Submission, :count)
 
+      end
+    end
+
+    context "with multiple sites" do
+      let(:params) {{  
+        "site_ids": "#{site.id}, #{second_site.id}",
+        "reliable": "false", 
+        "record_taken": "1111-11-11",
+        "type_name": "INSTAGRAM", 
+        "participant_id": "example@email.com", 
+        "file": { "0": Rack::Test::UploadedFile.new(test_image_path, 'image/jpg', true) } 
+      }} 
+
+      it "create new submissions" do
+        expect {
+          post "/admin/bulk_upload", params, headers: headers
+        }.to change(Submission, :count)
+        expect(Submission.last.sites.count).to eq 2
       end
     end
 

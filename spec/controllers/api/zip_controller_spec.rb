@@ -3,7 +3,7 @@ RSpec.describe Api::V1::ZipController, :type => :request do
   describe '#zip_images' do
     let!(:submission) { create(:submission, type_name: "EMAIL") }
     let(:email) { 'foo@example.com' }
-    let(:site_name) { submission.site.name }
+    let(:site_name) { submission.site_names.first }
 
     context "email params not present" do
       let(:params) {{ site_name: site_name }}
@@ -39,7 +39,8 @@ RSpec.describe Api::V1::ZipController, :type => :request do
         end
 
         it "uses supplied email address" do
-          expect(SubmissionZipWorker).to receive(:perform_async).with("#{submission.site.id}", submission.site.id, email, nil, nil)
+          site_id = submission.sites.first.id
+          expect(SubmissionZipWorker).to receive(:perform_async).with("#{site_id}", site_id, email, nil, nil)
           subject
         end
       end

@@ -1,4 +1,5 @@
 # Not currently used... not sure why
+# TODO - work out why this is not working!
 class CSVCreateService
   def initialize(params)
     site = Site.find(params[:site_id])

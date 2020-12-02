@@ -8,8 +8,8 @@ describe SubmissionSerializer do
 
   it { should include(:recordTaken => submission.record_taken) }
   it { should include(:ai_tags => []) }
-  it { should include(:siteId => submission.site_id) }
-  it { should include(:siteName => submission.site.name) }
+  it { should include(:siteIds => submission.site_ids) }
+  it { should include(:siteNames => submission.site_names) }
   it { should include(:tags => submission.tag_list) }
   it { should include(:comment => submission.comment) }
   it { should include(:typeName => submission.type_name) }

@@ -41,7 +41,7 @@ class InstagramUploadJob
 
       unless Type.find_by(type_specific_id: type_specific_id)
         registration = Registration.new(reliable: false, 
-          site_id: site_id, 
+          site_ids: [site_id], 
           image_file: image_url, 
           comment: post_desc,
           record_taken: record_taken, 

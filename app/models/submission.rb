@@ -1,6 +1,8 @@
 class Submission < ApplicationRecord
   acts_as_taggable # Alias for acts_as_taggable_on :tags
-  belongs_to :site
+  has_many :site_records
+  has_many :sites, through: :site_records
+  
   has_one :type,  :dependent => :destroy
   accepts_nested_attributes_for :type
   belongs_to :participant
@@ -21,7 +23,7 @@ class Submission < ApplicationRecord
 
   scope :search_site, ->(site_id) {
     if site_id.present?
-      where(site_id: site_id)
+      where(sites: site_id)
     end
   }
 
@@ -39,8 +41,8 @@ class Submission < ApplicationRecord
     end
   }
   
-  def site_name
-    @site_name ||= site.name
+  def site_names
+    @site_name ||= sites.map(&:name)
   end
 
   def image_url
@@ -56,7 +58,7 @@ class Submission < ApplicationRecord
   private
 
   def validate_site_id
-    errors.add(:site_id, "site id is invalid") unless Site.exists?(self.site_id)
+    errors.add(:site_ids, "site ids are missing or invalid") unless self.site_ids.map { |id| Site.exists?(id)} && site_ids.present?
   end
 
   def validate_participant_id
