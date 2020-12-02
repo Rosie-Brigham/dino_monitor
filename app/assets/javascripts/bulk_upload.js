@@ -35,8 +35,8 @@ core.BulkUpload.readyBulkUpload = function() {
   
       myDropzone.on("sendingmultiple", function(file, xhr, formData) {
         var site_ids = $('.ms-selected').map((_,el) => el.firstChild.getAttribute("value")).get()
-        let uniqueIds = [...new Set(site_ids)]
-        debugger
+        var uniqueIds = [...new Set(site_ids)]
+
         var reliable = $('#tpl').find('#reliable').is(':checked')
         var date = $('#tpl').find('#record_taken').val()
         var submittedAt = $('#tpl').find('#submitted_at').val()
