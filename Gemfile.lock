@@ -406,7 +406,7 @@ GEM
       simple_oauth (~> 0.3.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    uglifier (3.0.4)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -481,7 +481,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   twitter
   tzinfo-data
-  uglifier (~> 3.0.4)
+  uglifier (~> 4.2)
   web-console (>= 3.3.0)
   webpacker (~> 5.0)
 
