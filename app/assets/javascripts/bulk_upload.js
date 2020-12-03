@@ -34,9 +34,8 @@ core.BulkUpload.readyBulkUpload = function() {
       });
   
       myDropzone.on("sendingmultiple", function(file, xhr, formData) {
-        // var site_ids = $('.ms-selected').map((_,el) => el.firstChild.getAttribute("value")).get()
-        // var uniqueIds = [...new Set(site_ids)]
-        var uniqueIds = []
+        var site_ids = $('.ms-selected').map((_,el) => el.firstChild.getAttribute("value")).get()
+        var uniqueIds = site_ids.filter((v, p) => site_ids.indexOf(v) == p)
 
         var reliable = $('#tpl').find('#reliable').is(':checked')
         var date = $('#tpl').find('#record_taken').val()
