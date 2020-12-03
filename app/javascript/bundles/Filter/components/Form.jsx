@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MultiSelect from "react-multi-select-component";
+import Select from 'react-select';
 import ZipForm from './ZipForm.jsx'
 
 export default class Form extends React.Component {
@@ -30,16 +31,30 @@ export default class Form extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.id;
-
+    
     this.setState({
       [name]: value
     });
   }
-
+  
+  handleSiteGroupChange = event => {
+    if (event.type == "site_group") {
+      this.setState({
+        siteGroup: event["value"],
+        site: ""
+      });
+    } else if (event.type == "site_name") {
+      this.setState({
+        siteGroup: "",
+        site: event["value"]
+      });
+    } 
+  }
   setSelectedTag = event => {
     const tag = event
     this.setState({selected: tag})
   }
+  
   
   render() {
     const {selected} = this.state
@@ -49,21 +64,49 @@ export default class Form extends React.Component {
                           }
     const typeOptions = ['Email', 'WhatsApp', 'Twitter', 'Instagram']
     
+    // options for multi select
+    const groupStyles = {
+      color: '#434546',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    };
+
+    const groupBadgeStyles = {
+      backgroundColor: '#EBECF0',
+      borderRadius: '2em',
+      color: '#434546',
+      display: 'inline-block',
+      fontSize: 12,
+      fontWeight: 'normal',
+      lineHeight: '1',
+      minWidth: 1,
+      padding: '0.16666666666667em 0.5em',
+      textAlign: 'center',
+    };
+    
+    const formatGroupLabel = data => (
+      <div style={groupStyles}>
+        <span>{data.label}</span>
+        <span style={groupBadgeStyles}>{data.options.length}</span>
+      </div>
+    );
+    const colourStyles = {
+      option: styles => ({ ...styles, color: 'black' })
+    }
+
     return (
       <form className="ph4 pv4 mb0 br1" onSubmit={this.handleSubmit}>
           <div className="flex flex-wrap items-center justify-between">
-          <span className="h-25 w-100">
-              <select id="siteGroup" className="dark-color w-100" onChange={this.handleInputChange}>
-                <option defaultValue="">Select site group</option>
-              {this.props.groupNames.sort().map((site, i) => 
-                <option 
-                  value={site} 
-                  key={i}
-                  className="dark-color w-100">{site}</option>)}
-              </select>
+          <span className="h-25 w-100 pb4">
+              <Select 
+                options={this.props.groupNames} 
+                formatGroupLabel={formatGroupLabel} 
+                styles={colourStyles} 
+                onChange={this.handleSiteGroupChange} />
             </span>
 
-            <span className="h-25 w-100">
+            {/* <span className="h-25 w-100">
               <select id="site" className="dark-color w-100" onChange={this.handleInputChange}>
                 <option defaultValue="">Select site</option>
               {this.props.siteNames.sort().map((site, i) => 
@@ -72,7 +115,7 @@ export default class Form extends React.Component {
                   key={i}
                   className="dark-color w-100">{site}</option>)}
               </select>
-            </span>
+            </span> */}
 
             <span className="h-25 w-100">
               <select id="type" className="black w-100" placeholder="Select submission type" onChange={this.handleInputChange}>

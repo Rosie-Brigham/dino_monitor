@@ -23,7 +23,9 @@ module Api
       private
 
         def scope
-          if site_present?
+          if site_group_present?
+            SiteGroup.find_by(name: permitted_params[:site_group_filter]).submissions.with_attached_image.type_search(type_filter).with_tags(tag_filter)
+          elsif site_present?
             Site.find_by(name: permitted_params[:site_filter]).submissions.with_attached_image.type_search(type_filter).with_tags(tag_filter)
           else
             Submission.with_attached_image.type_search(type_filter).with_tags(tag_filter)
@@ -40,7 +42,7 @@ module Api
         
         def permitted_params
           params.permit(:reliable, 
-                        :site_id,
+                        :site_group_filter,
                         :site_filter,
                         :type_filter,
                         :tags,
@@ -63,6 +65,10 @@ module Api
 
         def site_present?
           permitted_params[:site_filter].present?
+        end
+
+        def site_group_present?
+          permitted_params[:site_group_filter].present?
         end
         
         def type_filter

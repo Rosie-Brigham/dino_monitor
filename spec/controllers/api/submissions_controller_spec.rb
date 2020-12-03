@@ -33,6 +33,12 @@ RSpec.describe Api::V1::SubmissionsController, :type => :request do
             expect(results['data'].count).to eq 1
           end
         end
+
+        context "with site group filter" do
+          it "filters on site groups" do
+          # TODO - when I am less tired
+          end
+        end
       end
     end  
   
