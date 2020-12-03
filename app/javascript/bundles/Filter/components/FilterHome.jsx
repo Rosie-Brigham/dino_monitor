@@ -8,7 +8,6 @@ import Nav from './Nav.jsx'
 export default class FilterHome extends React.Component {
   static propTypes = {
     groupNames: PropTypes.array.isRequired,
-    siteNames: PropTypes.array.isRequired, // this is passed from the Rails view
     tags: PropTypes.array.isRequired,
     userEmail: PropTypes.string.isRequired
   };
@@ -155,7 +154,6 @@ export default class FilterHome extends React.Component {
             viewDataVis={this.state.viewDataVis}
             handleToggle={this.handleToggle}
             refineView={this.refineView}
-            siteNames={this.props.siteNames}
             groupNames={this.props.groupNames}
             tags={this.props.tags}
             handleToggleNav={this.handleToggleNav}

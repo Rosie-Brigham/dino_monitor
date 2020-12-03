@@ -106,17 +106,6 @@ export default class Form extends React.Component {
                 onChange={this.handleSiteGroupChange} />
             </span>
 
-            {/* <span className="h-25 w-100">
-              <select id="site" className="dark-color w-100" onChange={this.handleInputChange}>
-                <option defaultValue="">Select site</option>
-              {this.props.siteNames.sort().map((site, i) => 
-                <option 
-                  value={site} 
-                  key={i}
-                  className="dark-color w-100">{site}</option>)}
-              </select>
-            </span> */}
-
             <span className="h-25 w-100">
               <select id="type" className="black w-100" placeholder="Select submission type" onChange={this.handleInputChange}>
                 <option defaultValue="">Select submission type</option>

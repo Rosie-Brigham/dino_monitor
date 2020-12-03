@@ -5,7 +5,6 @@ class FilterHomeController < ApplicationController
 
   def index
     @group_names = create_site_object
-    @site_names = Site.all.map.map(&:name)
     @tags = ActsAsTaggableOn::Tag.all.map {|t| t.name}.uniq 
     @user_email = current_user.try(:email) || ""
   end
