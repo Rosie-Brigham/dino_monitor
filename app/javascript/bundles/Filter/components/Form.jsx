@@ -50,6 +50,17 @@ export default class Form extends React.Component {
     return (
       <form className="ph4 pv4 mb0 br1" onSubmit={this.handleSubmit}>
           <div className="flex flex-wrap items-center justify-between">
+          <span className="h-25 w-100">
+              <select id="site" className="dark-color w-100" onChange={this.handleInputChange}>
+                <option defaultValue="">Select site group</option>
+              {this.props.groupNames.sort().map((site, i) => 
+                <option 
+                  value={site} 
+                  key={i}
+                  className="dark-color w-100">{site}</option>)}
+              </select>
+            </span>
+
             <span className="h-25 w-100">
               <select id="site" className="dark-color w-100" onChange={this.handleInputChange}>
                 <option defaultValue="">Select site</option>

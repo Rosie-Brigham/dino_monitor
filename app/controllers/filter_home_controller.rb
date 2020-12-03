@@ -4,7 +4,8 @@ class FilterHomeController < ApplicationController
   layout "filter_home"
 
   def index
-    @site_names = Site.all.map {|s| s.name }
+    @group_names = SiteGroup.all.map(&:name)
+    @site_names = Site.all.map.map(&:name)
     @tags = ActsAsTaggableOn::Tag.all.map {|t| t.name}.uniq 
     @user_email = current_user.try(:email) || ""
   end
