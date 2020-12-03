@@ -18,7 +18,7 @@ class Submission < ApplicationRecord
   scope :reliable, -> { where(reliable: true) }
   
   scope :exclude_unsorted, ->(id) { 
-    where.not(site_id: id)
+    where.not(sites: id)
   }
 
   scope :search_site, ->(site_id) {
