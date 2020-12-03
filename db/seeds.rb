@@ -17,10 +17,13 @@ SiteGroup.create([
     name: "Mosasaur"
   },
   {
-    name: "Jurassic Park"
+    name: "Hylaeosaurus"
   },
   {
     name: "Iguanadons"
+  },  
+  {
+    name: "Megalosaurus"
   },
   {
     name: "Jurassic outcrop and Pterosaurs"
@@ -72,43 +75,43 @@ Site.create([
   {
     name: "Megatherium",
     notes: { informal_description: "giant sloth" },
-    site_group_id: SiteGroup.find_by(name: "Giant sloth").id
+    site_group_id: SiteGroup.find_by(name: "Giant Sloths").id
 
   },
   {
     name: "Argentinian gravels",
     notes: { informal_description: "geological illustration - flint gravel below the giant sloth"},
-    site_group_id: SiteGroup.find_by(name: "Giant sloth").id
+    site_group_id: SiteGroup.find_by(name: "Giant Sloths").id
   },
   {
     name: "Anoplotherium commune (standing)",
     notes: { informal_description: "camel-like Tertiary mammal - standing"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },
   {
     name: "Anoplotherium (lying)",
     notes: { informal_description: "camel-like Tertiary mammal - lying down"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },  
   {
     name: "Anoplotherium commune (rearing)",
     notes: { informal_description: "camel-like Tertiary mammal - standing with rearing head"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },
   {
     name: "Palaeotherium (standing)",
     notes: { informal_description: "long-nosed Tertiary mammal - standing"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },
   {
     name: "Palaeotherium (sitting)",
     notes: { informal_description: "long-nosed Tertiary mammal - sitting"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },
   {
     name: "Palaeotherium 3",
     notes: { informal_description: "Missing - a third Palaeotherium was originally present"},
-    site_group_id: SiteGroup.find_by(name: "Tertiary mammals").id
+    site_group_id: SiteGroup.find_by(name: "Tertiary Mammals").id
   },
   {
     name: "Cretaceous Pterosaur A",
@@ -133,12 +136,12 @@ Site.create([
   {
     name: "Iguanodon (standing)",
     notes: { informal_description: "Big dinosaur - standing on rock"},
-    site_group_id: SiteGroup.find_by(name: "Iguanodons").id
+    site_group_id: SiteGroup.find_by(name: "Iguanadons").id
   },
   {
     name: "Iguanodon (sitting)",
     notes: { informal_description: "Big dinosaur - partially recumbent"},
-    site_group_id: SiteGroup.find_by(name: "Iguanodons").id
+    site_group_id: SiteGroup.find_by(name: "Iguanadons").id
   },
   {
     name: "Hylaeosaurus",
@@ -148,12 +151,12 @@ Site.create([
   {
     name: "Cycads",
     notes: { informal_description: "Cylindrical Cretaceous plants"},
-    site_group_id: SiteGroup.find_by(name: "Iguanodons").id
+    site_group_id: SiteGroup.find_by(name: "Iguanadons").id
   },
   {
     name: "Wealden",
     notes: { informal_description: "geological illustration - Wealden sandstone around and forming bases to the main dinosaurs"},
-    site_group_id: SiteGroup.find_by(name: "Iguanodons").id
+    site_group_id: SiteGroup.find_by(name: "Iguanadons").id
   },
   {
     name: "Megalosaurus",
