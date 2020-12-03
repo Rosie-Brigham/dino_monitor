@@ -19,6 +19,7 @@ export default class FilterHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {     
+      siteGroup: '',
       site: '',
       type: '',
       tags: '',
@@ -60,6 +61,7 @@ export default class FilterHome extends React.Component {
 
   // this refines the view, collecting the images and or data to show
   refineView = async ({reliable=this.state.reliable, 
+                       siteGroup=this.state.siteGroup,
                        site=this.state.site, 
                        type=this.state.type, 
                        tags=this.state.tags,
@@ -69,7 +71,7 @@ export default class FilterHome extends React.Component {
                        dataOnly=this.state.viewDataVis}) => {
     try {
       const endpoint = dataOnly ? 'api/v1/submission_data' : 'api/v1/submissions'
-      const requestURL = url ? url : `${endpoint}?reliable=${reliable}&site_filter=${site}&type_filter=${type}&tags=${tags}&bespoke_size=${size}&page=${pageNumber}`
+      const requestURL = url ? url : `${endpoint}?reliable=${reliable}&site_group_filter=${siteGroup}&site_filter=${site}&type_filter=${type}&tags=${tags}&bespoke_size=${size}&page=${pageNumber}`
       const response = await fetch(requestURL)
       if (!response.ok) {
       throw Error(response.statusText)
@@ -81,6 +83,7 @@ export default class FilterHome extends React.Component {
       // Sets the state of the page wide variables
       this.setState({
         reliable: reliable,
+        siteGroup: siteGroup,
         site: site, 
         type: type, 
         tags: tags

@@ -7,6 +7,7 @@ export default class Form extends React.Component {
     super(props);
     
     this.state = {
+      siteGroup: '',
       site: '',
       type: '',
       selected: [],
@@ -19,6 +20,7 @@ export default class Form extends React.Component {
     // this returns a string of just the labels for selected tags
     const selectedTags = this.state.selected.map(obj => { return obj.label})
     this.props.refineView({reliable: this.state.reliable, 
+                           siteGroup: this.state.siteGroup,
                            site: this.state.site, 
                            type: this.state.type,
                            tags: selectedTags})
@@ -51,7 +53,7 @@ export default class Form extends React.Component {
       <form className="ph4 pv4 mb0 br1" onSubmit={this.handleSubmit}>
           <div className="flex flex-wrap items-center justify-between">
           <span className="h-25 w-100">
-              <select id="site" className="dark-color w-100" onChange={this.handleInputChange}>
+              <select id="siteGroup" className="dark-color w-100" onChange={this.handleInputChange}>
                 <option defaultValue="">Select site group</option>
               {this.props.groupNames.sort().map((site, i) => 
                 <option 
