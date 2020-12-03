@@ -41,7 +41,7 @@ export default class Nav extends React.Component {
                 className={this.props.viewDataVis ? "w-50 br--right white" : "w-50 br--right active-button"} 
                 onClick={this.props.handleToggle}>Images</button>
             </div>
-            <Form siteNames={this.props.siteNames} tags={this.props.tags} refineView={this.props.refineView} email={this.props.userEmail}/>
+            <Form groupNames={this.props.groupNames} tags={this.props.tags} refineView={this.props.refineView} email={this.props.userEmail}/>
             <div className='w-100 absolute-ns bottom-0-ns'>
               <Login userEmail={this.props.userEmail} />
               <Key />
