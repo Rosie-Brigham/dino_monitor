@@ -17,6 +17,7 @@
 //= require smart_listing
 //= require micromodal/dist/micromodal
 //= require multi_select
+//= require tagify
 //= require core
 //= require tags_input
 //= require bulk_upload
