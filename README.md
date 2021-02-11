@@ -24,3 +24,8 @@ PGPASSWORD=mypassword pg_dump -Fc --no-acl --no-owner -h localhost -U roo dino_m
 
 ## Run instagram scraper
 instamancer hashtag monumentmonitor --full --logging=info --visible
+
+
+## pull changes from Monument Monitor
+Checkout a new branch, and pull down from the 'upstream' remote.
+Deal with any merge conflicts and HUZZAH!

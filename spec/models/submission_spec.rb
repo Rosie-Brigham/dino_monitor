@@ -44,7 +44,7 @@ RSpec.describe Submission, type: :model do
     before { submission.set_filename}
     it "corrects the file name" do
       type = submission.type_name
-      expected_filename = "#{Date.today.strftime("%d-%m-%Y")}_#{type.first.downcase}.jpg"
+      expected_filename = "#{submission.id}_#{Date.today.strftime("%d-%m-%Y")}_#{type.first.downcase}.jpg"
 
       expect(submission.image.attachment.filename.to_s).to eq expected_filename
     end
