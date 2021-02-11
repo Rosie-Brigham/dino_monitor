@@ -51,7 +51,7 @@ class Submission < ApplicationRecord
   
   def set_filename
     if self.image.attached?
-      file_name = "#{self.record_taken.strftime("%d-%m-%Y")}_#{type_name.first.downcase}.jpg"
+      file_name = "#{self.id}_#{self.record_taken.strftime("%d-%m-%Y")}_#{type_name.first.downcase}.jpg"
       self.image.blob.update(filename: file_name)
     end
   end

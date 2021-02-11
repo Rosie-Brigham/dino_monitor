@@ -19,10 +19,11 @@ class Registration
                                       comment: comment,
                                       type_specific_id: type_specific_id,
                                       image: image)
-
-                                      # For twitter and insta uploads, using image URL
+      
+      # For twitter and insta uploads, using image URL
       save_image(submission, image_file, type_name) if image_file.present?
 
+      # For bulk uploads
       submission.set_filename unless image_file.present? 
     end
     true
@@ -36,7 +37,7 @@ class Registration
   private
 
   def save_image(submission, image_file, type_name)
-    image_name = "#{submission.record_taken.strftime("%d/%m/%Y")}_#{type_name.first.downcase}.jpg"
+    image_name = "#{submission.id}_#{submission.record_taken.strftime("%d/%m/%Y")}_#{type_name.first.downcase}.jpg"
     begin
       file = URI.open(image_file)
       submission.image.attach(io: file, filename: image_name)

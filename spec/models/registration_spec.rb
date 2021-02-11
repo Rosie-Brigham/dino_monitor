@@ -42,7 +42,7 @@ RSpec.describe Registration, type: :model do
         subject.save
         submission = Submission.last
         expect(submission.image.attached?).to be true
-        file_name = "#{submission.record_taken.strftime('%d-%m-%Y')}_e.jpg"
+        file_name = "#{submission.id}_#{submission.record_taken.strftime('%d-%m-%Y')}_e.jpg"
         expect(submission.image.attachment.filename.to_s).to eq file_name
       end
     end

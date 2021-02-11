@@ -3,11 +3,17 @@ import React from 'react';
 export default class ZipForm extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      view: 'di'
+    }
   }
 
   handleSubmit = event => {
     event.preventDefault()
     console.log("FiReD")
+    this.setState({view: 'dn'})
+
     const {email} = this.props
     const {site} = this.props
     const {type} = this.props    
@@ -21,13 +27,15 @@ export default class ZipForm extends React.Component {
       .then(response => response.json())
       .then(data => console.log(data, "This is the data"))
       .catch(error => console.log(error))
+    
+    alert("Your images are being processed, depending on how many images you have selected this may take a long time. Please leave up to an hour before re-submitting another job")
   }
 
 
   render() {
     return (
-      <div className="h-25 w-100 flex flex-column">
-        <button className="mt4 white-background dark-color w-100 centre" type="submit" onClick={this.handleSubmit}>
+      <div className={"h-25 w-100 flex flex-column"}>
+        <button className={"mt4 white-background dark-color w-100 centre " + this.state.view } type="submit" onClick={this.handleSubmit}>
           Zip images
         </button>
         <p className="f6">
