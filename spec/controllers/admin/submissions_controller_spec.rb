@@ -8,12 +8,14 @@ RSpec.describe Admin::SubmissionsController, type: :controller do
     let(:submission) { create(:submission, sites: [site_one]) }
     let(:params) {{
       "submission"=> { 
-        "site_names"=> "#{site_one.name},#{site_two.name}", 
+        "site_names"=> "[{\"value\":\"#{site_one.name}\"},{\"value\":\"#{site_two.name}\"}]", # stupid fucking tags thing.
         "record_taken"=>"01/01/2021", 
         "tag_list"=>""
       },
       "id" => submission.id
     }}
+
+    
 
     login_user
     before do 
