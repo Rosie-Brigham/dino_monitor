@@ -1,5 +1,4 @@
 <h3 id='site-info' class="f1">Submissions to date (<%=@site.submissions.count %>)</h3>
-
 <table id="site-submissions-admin-list" class="w-100">
   <thead>
     <tr>
@@ -24,7 +23,7 @@
               <%= image_tag(url_for(submission.image.variant(resize:"200x200"))) %>
             </span>
           </td>
-          <td class="sites"><%= f.text_field :site_names, value: submission.site_names.join(', '), class: "site_names" %> </td>
+          <td class="sites"><%= f.text_field :site_names, value: submission.site_names.join(', '), class: "site_name_tags", placeholder: 'Add other sculptures' %></td>
           <td>Reliable? <%= f.check_box :reliable, checked: submission.reliable %></td>
           <td><%=f.text_field :record_taken, class: :datepicker, :value => submission.record_taken.strftime("%d/%m/%Y") %></td>
           <td><%= f.text_field :tag_list, value: submission.tag_list.to_s, class: "tags" %> </td>
@@ -48,3 +47,6 @@
     <% end %>
   </tbody>
 </table>
+
+
+<span id="site-name-list"><%= Site.all.map(&:name) %></span>

@@ -195,3 +195,19 @@ div.tagsinput div {
 .micromodal-slide .modal__overlay {
   will-change: transform;
 }
+
+
+// Tags
+
+td.sites {
+  min-width: 250px;
+}
+
+tag div {
+  background-color: #f5f6ff;
+  margin-right: 7px;
+}
+
+span#site-name-list {
+  display: none;
+}

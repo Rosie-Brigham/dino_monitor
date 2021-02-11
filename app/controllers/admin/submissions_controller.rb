@@ -26,7 +26,6 @@ module Admin
     def edit; end
 
     def update
-      submission_params
       @submission.update_attributes(submission_params)
       respond_to do |format|
         format.js { render 'admin/submissions/update.js.erb' }
@@ -80,7 +79,20 @@ module Admin
 
     def collect_sites
       site_names = params[:submission][:site_names].split(',')
-      site_names.map { |name| Site.find_by(name: name) } #TODO ADJUST FOR MORE SITES
+      cleaned_names = []
+
+      # cleaning up all the names - very hacky, but thats the problem with this js nonsense. - the future is not rails.
+      site_names.map do |site|
+        site = site.gsub('[{"value":', '')
+        site = site.gsub('{"value":', '')
+        site = site.gsub('}', '')
+        site = site.gsub(']', '')
+        site[0] = ''
+        site[-1] = ''
+        
+        cleaned_names << site
+      end
+      cleaned_names.map { |name| Site.find_by(name: name) } #TODO ADJUST FOR MORE SITES
     end
 
     def search_site(collection, name)
