@@ -118,7 +118,7 @@ div.tagsinput div {
 .modal__container {
   background-color: #fff;
   padding: 30px;
-  max-width: 500px;
+  max-width: 80vw;
   max-height: 100vh;
   border-radius: 4px;
   overflow-y: auto;
@@ -133,8 +133,7 @@ div.tagsinput div {
 .modal__header .modal__close:before { content: "\2715"; }
 
 .modal__content {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-left: 0;
   line-height: 1.5;
   color: rgba(0,0,0,.8);
 }
