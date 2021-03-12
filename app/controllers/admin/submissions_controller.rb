@@ -41,7 +41,7 @@ module Admin
     def create; end
 
     def destroy
-      site = @submission.site
+      site = @submission.sites.first
       @submission.destroy
       redirect_to admin_site_path(site.id)
     end
