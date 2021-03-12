@@ -149,6 +149,11 @@ Site.create([
     site_group_id: SiteGroup.find_by(name: "Hylaeosaurus").id
   },
   {
+    name: "Hylaeosaur Head",
+    notes: { informal_description: "The head of the Hylaeosaur"},
+    site_group_id: SiteGroup.find_by(name: "Hylaeosaurus").id
+  },
+  {
     name: "Cycads",
     notes: { informal_description: "Cylindrical Cretaceous plants"},
     site_group_id: SiteGroup.find_by(name: "Iguanadons").id
